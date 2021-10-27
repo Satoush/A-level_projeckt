@@ -17,6 +17,7 @@ class enemy():
     def draw(self, i, X, Y):
         screen.blit(self.Image_path[i], (X, Y))
 
+    # Enemies are put onto a list and
     def adding_multiple_enemies(self):
         for i in range(self.num_of_enemies):
             self.Image_path.append(pygame.image.load('Assets/zombie.png'))
@@ -25,6 +26,7 @@ class enemy():
             self.changeX.append(self.velocity)  # initial speed of the  character
             self.changeY.append(self.velocity)
 
+    # Adding basic movement towards player
     def move_to_player(self, PlayerX,PlayerY):
         for i in range(self.num_of_enemies):
 
@@ -48,6 +50,7 @@ class enemy():
             else:
                 if self.Y[i] == PlayerY:
                     self.changeY[i] = 0
+
 
 
             self.X[i] += self.changeX[i]
