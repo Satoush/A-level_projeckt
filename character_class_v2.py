@@ -36,35 +36,15 @@ class Character(pygame.sprite.Sprite):
 
     def player_input(self):
         key = pygame.key.get_pressed()
-
-        # Left
-        if key[pygame.K_LEFT] or key[ord('a')]:
-            self.changeX = self.velocity * -1
-        # Right
-        if key[pygame.K_RIGHT] or key[ord('d')]:
-            self.changeX = self.velocity
-        # Up
-        if key[pygame.K_UP] or key[ord('w')]:
-            self.changeY = self.velocity * -1
-        # Down
-        if key[pygame.K_DOWN] or key[ord('s')]:
-            self.changeY = self.velocity
-
-        else:
-            if key == False:
-                if key [pygame.K_RIGHT] or \
-                        key[ ord('d') ]or \
-                        key[ pygame.K_LEFT ]or \
-                        key[ ord('a')] or \
-                        key[pygame.K_UP] or \
-                        key[ord('w')] or \
-                        key[pygame.K_DOWN] or \
-                        key[ord('s')]:
-                            self.changeX = 0 # If keypress is released, player stops moving
-                            self.changeY = 0
-
-            self.X += self.changeX
-            self.Y += self.changeY
+        p = pygame
+        self.changeX = 0
+        self.changeY = 0
+        if key[p.K_DOWN] or key[p.K_UP] or key[p.K_w] or key[p.K_s]:
+            self.changeY = self.velocity * - (int(key[p.K_UP] or key[p.K_w]) * 2 - 1)
+        if key[p.K_LEFT] or key[p.K_RIGHT] or key[p.K_a] or key[p.K_d]:
+            self.changeX = self.velocity * - (int(key[p.K_LEFT] or key[p.K_a]) * 2 - 1)
+        self.X += self.changeX
+        self.Y += self.changeY
 
     def boundaries(self):
         if self.X <= 0:
